@@ -17,7 +17,7 @@ type SeoProps = {
  * Your live production domain. Used to build absolute canonical /
  * hreflang / Open Graph URLs (search engines want absolute URLs).
  */
-const SITE_ORIGIN = "https://www.themodernprotocols.com";
+const SITE_ORIGIN = "https://mahjong.themodernprotocols.com";
 
 /** The two language twins so we can emit correct hreflang alternates. */
 const ALTERNATES: { hreflang: string; path: string }[] = [

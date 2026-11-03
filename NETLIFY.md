@@ -44,9 +44,9 @@ Keep all ten Shopify destination URLs exactly unchanged.
 Local captured-navigation tests do not verify Shopify products, prices or live
 redirects. Google Fonts and Meta resources need live preview checks too.
 
-Known inherited items remain unchanged: SEO origin points to
-`www.themodernprotocols.com` instead of `mahjong.themodernprotocols.com`, and
-Terms/Privacy links point to `#`. Resolve these explicitly before production.
+SEO canonical, language-alternate and social URLs use the production origin
+`https://mahjong.themodernprotocols.com`. The inherited Terms/Privacy links
+still point to `#`; their destinations need to be supplied separately.
 
 Obtain user approval of the preview before production promotion or DNS changes.
 Retain the current live deployment and Namecheap record for rollback. Only the
