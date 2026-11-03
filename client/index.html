@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Grand Mahjong Master-Key — Luxe Tile Press</title>
+    <meta name="description" content="Go from confused to confident at the Mahjong table in 48 hours. Master the tiles, the card, and the social etiquette — the Master-Key + 5 Visual Cheat Sheets — flash sale price $19.95 (regular $37), for a limited time." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400;1,9..144,600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+    <!-- Meta Pixel Code -->
+    <script>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      // ---------------------------------------------------------------------
+      // 1. AUTOMATIC EVENT TRACKING: OFF.
+      // Must run BEFORE init or it has no effect. Without this, fbevents.js
+      // infers conversions (Purchase, AddToCart...) from button text and
+      // on-page prices and fires them on load — they arrive tagged
+      // `cs_est: true` and report sales that never happened.
+      fbq('set', 'autoConfig', false, '1666692734460053');
+
+      // ---------------------------------------------------------------------
+      // 2. INIT with Advanced Matching.
+      // external_id is an anonymous, random per-visitor UUID kept in
+      // localStorage and sent again by Shopify, so Meta stitches the landing
+      // page visitor and the Shopify buyer into ONE person instead of two.
+      // It is not an email, name, or any personal data. Email/phone are added
+      // automatically by the app when a visitor arrives with them on the URL.
+      (function () {
+        var KEY = 'mk_external_id';
+        var id;
+        try {
+          id = localStorage.getItem(KEY);
+          if (!id) {
+            id = (crypto && crypto.randomUUID)
+              ? crypto.randomUUID()
+              : 'mk-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 12);
+            localStorage.setItem(KEY, id);
+          }
+        } catch (e) { id = undefined; }
+        fbq('init', '1666692734460053', id ? { external_id: id } : {});
+      })();
+
+      // ---------------------------------------------------------------------
+      // 3. NO event is fired here — not PageView, and above all not Purchase.
+      // This is a SPA: firing PageView in the HTML *and* on route change
+      // produced a duplicate (the "/" -> "/english" redirect counts as a route
+      // change, and React StrictMode re-runs mount effects in dev). The app is
+      // the single owner of PageView — see trackPageView() in
+      // client/src/lib/pixel.ts, which dedupes per path. fbq queues calls made
+      // before fbevents.js finishes loading, so nothing is lost.
+      //
+      // Purchase is NOT implemented anywhere in this app. This funnel has no
+      // own thank-you page: payment completes on Shopify, so Shopify's native
+      // Meta integration is the only correct source of Purchase.
+    </script>
+    <!-- End Meta Pixel Code -->
+    <!-- HeyLloyd editor scripts (/__heylloyd/*) were removed on export:
+         they exist only inside the HeyLloyd sandbox. Nothing else in this
+         file was changed. See MIGRATION.md section 6. -->
+  </head>
+  <body>
+    <!-- Meta Pixel (noscript fallback) -->
+    <noscript>
+      <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1666692734460053&ev=PageView&noscript=1" alt="" />
+    </noscript>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+      </body>
+</html>

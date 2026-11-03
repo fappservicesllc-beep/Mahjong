@@ -1,0 +1,34 @@
+[build]
+  command = "python3 scripts/netlify-build.py"
+  publish = "dist/public"
+
+[build.environment]
+  NODE_VERSION = "24"
+
+# Existing files take priority over these fallback rules.
+[[redirects]]
+  from = "/download/*"
+  to = "/download-not-found.txt"
+  status = 404
+
+[[redirects]]
+  from = "/api/*"
+  to = "/download-not-found.txt"
+  status = 404
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/download/mahjong-master-key-source.zip"
+  [headers.values]
+    Content-Type = "application/zip"
+    Content-Disposition = 'attachment; filename="mahjong-master-key-source.zip"'
+
+[[headers]]
+  for = "/download/mahjong-master-key-full.zip"
+  [headers.values]
+    Content-Type = "application/zip"
+    Content-Disposition = 'attachment; filename="mahjong-master-key-full.zip"'

@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 35 40% 97%;
+    --foreground: 24 30% 12%;
+    --card: 0 0% 100%;
+    --card-foreground: 24 30% 12%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 24 30% 12%;
+    --primary: 12 76% 60%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 12 45% 89%;
+    --secondary-foreground: 24 30% 20%;
+    --muted: 30 25% 94%;
+    --muted-foreground: 24 15% 40%;
+    --accent: 43 40% 60%;
+    --accent-foreground: 24 30% 12%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 24 20% 88%;
+    --input: 24 20% 88%;
+    --ring: 12 76% 60%;
+    --radius: 0.5rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  html, body {
+    @apply overflow-x-hidden;
+    max-width: 100vw;
+  }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "ss01", "ss02", "cv11";
+    letter-spacing: -0.005em;
+  }
+  h1, h2, h3, h4, h5 {
+    @apply font-serif;
+    font-variation-settings: "opsz" 96, "SOFT" 50;
+    letter-spacing: -0.02em;
+  }
+  h1 {
+    font-variation-settings: "opsz" 144, "SOFT" 30;
+  }
+  .font-display, .display {
+    font-family: "Cormorant Garamond", "Fraunces", Georgia, serif;
+    letter-spacing: -0.01em;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer utilities {
+  .hover-elevate {
+    @apply transition-all duration-200 ease-out;
+  }
+  .hover-elevate:hover {
+    @apply -translate-y-0.5 shadow-lg;
+  }
+  .active-elevate-2:active {
+    @apply translate-y-0 shadow-sm;
+  }
+
+  .gold-foil {
+    background: linear-gradient(135deg, #C9A961 0%, #E4C776 40%, #B8964A 60%, #C9A961 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .marble-bg {
+    background:
+      radial-gradient(circle at 20% 30%, rgba(244, 184, 176, 0.18), transparent 45%),
+      radial-gradient(circle at 80% 70%, rgba(232, 106, 76, 0.10), transparent 50%),
+      radial-gradient(circle at 50% 90%, rgba(143, 168, 142, 0.10), transparent 50%),
+      #FBF7F2;
+  }
+
+  .cream-bg {
+    background-color: #FBF7F2;
+  }
+
+  .divider-flourish {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    color: #C9A961;
+  }
+  .divider-flourish::before,
+  .divider-flourish::after {
+    content: "";
+    flex: 0 1 4rem;
+    height: 1px;
+    background: linear-gradient(to right, transparent, #C9A961, transparent);
+  }
+
+  .marquee-track {
+    width: max-content;
+    animation: marquee-left 60s linear infinite;
+  }
+  .marquee-track-reverse {
+    width: max-content;
+    animation: marquee-right 75s linear infinite;
+  }
+  .marquee-track:hover,
+  .marquee-track-reverse:hover {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes marquee-left {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0); }
+}
+
+@keyframes bump-pulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.55), 0 0 0 0 rgba(212, 175, 55, 0.35);
+    border-color: rgba(212, 175, 55, 1);
+  }
+  50% {
+    transform: scale(1.035);
+    box-shadow: 0 0 0 10px rgba(212, 175, 55, 0), 0 0 24px 4px rgba(212, 175, 55, 0.55);
+    border-color: rgba(212, 175, 55, 0.5);
+  }
+}
+.bump-pulse {
+  animation: bump-pulse 1.4s ease-in-out infinite;
+  transform-origin: center;
+  will-change: transform, box-shadow;
+}
+
+@keyframes modal-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.modal-fade-in {
+  animation: modal-fade-in 0.25s ease-out both;
+}
+
+@keyframes modal-pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.96);
+  }
+  60% {
+    transform: translateY(0) scale(1.008);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.modal-pop-in {
+  animation: modal-pop-in 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track, .marquee-track-reverse, .bump-pulse {
+    animation: none;
+  }
+  .modal-fade-in, .modal-pop-in {
+    animation-duration: 0.01ms;
+  }
+}
