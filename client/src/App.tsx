@@ -26,6 +26,9 @@ export default function App() {
 
   // Show the live-purchase social proof everywhere except the post-purchase page.
   const showPopup =
+    location !== "/" &&
+    location !== "/english" &&
+    location !== "/checkout" &&
     location !== "/thank-you" &&
     location !== "/gracias" &&
     location !== "/master-key" &&
