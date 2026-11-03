@@ -1,78 +1,98 @@
-# English conversion V2 review
+# Conservative conversion V2 — review only
 
-Branch: `v2-conversion`. Base: `2ade472` on `migration/netlify-preview`.
-This branch must not be merged or published to production until the user approves.
+Branch: `v2-conversion`. Original production baseline: `2ade472` on
+`migration/netlify-preview`. Do not merge or promote this branch without approval.
 
-## Scope
+## Visual restoration
 
-The existing React/Vite/Express site, theme, typography, mockups, routes and commerce flow remain the foundation. The English landing is restructured with a concrete beginner hero, 2026 relevance directly after it, clear beginner questions, seven learning areas, included materials, audience fit, a plain $19.95 offer and nine practical FAQs. The optional 2026 Hand Strategies upgrade remains separate from the base guide.
+The English landing was reconstructed from the production `home.tsx`, then edited
+for copy. Restored the original hero grid, 2rem/mobile and original desktop type
+sizes and bold weights, coral italic emphasis, spacing, rounded teal purchase
+buttons and their shadows, full outlined Spanish button, original PNG product
+mockups, decorative tiles and glows, flourishes, gradient introduction panel,
+icon cards, coral editorial panel, gold price treatment, offer card and footer.
+The replacement navigation/header and WebP derivatives from the first V2 were
+removed. Existing font families (Fraunces, Cormorant Garamond and Manrope), global
+CSS, Tailwind theme, button component and original image files remain unchanged.
 
-Existing landing purchase CTAs went to `/checkout`, not directly to Shopify. All three V2 purchase CTAs preserve that internal step, so the existing order bumps and exact Shopify destinations remain available. The language link still goes to `/espanol`.
+A browser comparison against a separately built production-baseline copy verified
+identical computed font, color, spacing, radius and shadow properties for the
+hero heading/body, purchase buttons, Spanish button, price and mockup at 360,
+390, 768 and 1440px. The Spanish button is fully visible in the initial viewport
+at all four sizes, in its original position beside/below the purchase button.
+Copy length changes line wrapping; this is not a pixel-identical content snapshot.
 
-Three responsive WebP derivatives of the existing product mockup replace its PNG only in the English landing. Originals and Spanish assets remain unchanged. The derivatives are 56,408 / 147,484 / 284,530 bytes for 480 / 800 / 1200px, compared with the 2.8 MB original. Explicit dimensions reserve image space; the hero has high fetch priority and the second image loads lazily. No new forms, libraries or page animations were added.
+## Copy retained within the production design
 
-## Naming audit — no standardization applied
+- American Mahjong, finally made simple; clear beginner positioning.
+- 2026 relevance in the hero and original gradient introduction section.
+- Concrete card-reading, Charleston, Joker, calling-tile and game-flow language.
+- Original five illustrated contents cards retained with clearer descriptions.
+- Original coral panel retained for factual audience guidance instead of a quote.
+- Straightforward $19.95 offer inside the original gold-accented offer layout.
+- Practical FAQs using the original typography, spacing and white/gold card style.
 
-| Location | Existing variants |
-| --- | --- |
-| English landing | The Grand Mahjong Master-Key; Master-Key; The Master-Key Guide; Master-Key Roadmap |
-| English checkout | The Grand Mahjong Master-Key; The Master-Key Roadmap; The Secrets of The Grand Mahjong Master Key™ for the first add-on; Strategies for 2026 Hands for the second |
-| Main mockup | THE GRAND MAHJONG MASTER-KEY |
-| Cover / cheat-codes asset | The Secrets of THE GRAND MAHJONG MASTER-KEY™ — Cheat Codes, 2026 Edition |
-| Metadata | The Grand Mahjong Master-Key; new English SEO suffix describes the beginner outcome |
-| Spanish | Existing localized names remain untouched |
+The old testimonial, star rating, buyer count, simulated buyer ticker and artificial
+sale claims were not restored because supporting records are unavailable. English
+purchase popups remain suppressed; Spanish popup behavior is unchanged. The
+original sticky coral bar is retained with factual price copy, not sale urgency.
+No useful section was removed merely to shorten the page.
 
-No “The Mahjong Master-Key 2.0” string was found in the English source. The primary mockup and cover were visually inspected; no 2.0 branding was visible there. Do not treat the pixel library version 2.0 as a product name.
+## Shopify and upgrade flow
 
-Recommendation: retain **The Grand Mahjong Master-Key**, which matches the main mockup, current checkout and metadata. Await user approval before standardizing shorter visible variants. Shopify titles, tracking content labels and original assets are unchanged.
+See **SHOPIFY-URL-AUDIT.md** for the complete literal before/after comparison:
+11 source occurrences, 10 distinct URLs, all identical. The first V2 had not
+changed them either. No Shopify URL was created or normalized.
 
-The original SEO cover image is labeled Cheat Codes, while the main mockup shows the base guide. The V2 social image uses the existing main mockup derivative to avoid presenting the add-on as the base guide. No asset was redrawn.
+Original and revised English path:
+`/english` → `/checkout` → original Shopify cart for the selected combination.
 
-## Credibility audit
+The Cheat Codes and 2026 Hand Strategies selectors belong to this site's
+intermediate checkout page. They are not claimed to be Shopify-native widgets.
+Both checkout source files, their buttons/handlers, prices, bump selection logic,
+exit offers and every Shopify destination remain byte-for-byte unchanged.
+Spanish remains `/espanol` → `/checkout-es`, with its existing direct offer CTA
+also preserved. The core guide does not give away the paid strategy upgrade.
 
-Removed from English landing: “Loved by 2,400+ hostesses,” five-star rating display, Elena R. quote and stars, hardcoded luxury buyer ticker and recent-purchase timestamps. No supporting customer records or review source exists in this repository. Nothing was substituted with invented proof.
+## Preserved integrations and scope
 
-The global purchase popup uses a hardcoded buyer array and randomly chosen minute labels. It is suppressed on `/`, `/english` and `/checkout`. Its component and behavior on Spanish routes remain unchanged. Spanish social proof, checkout exit-offer urgency, and existing purchase-page copy are outside this English landing rewrite and still require their own evidence review.
+No edits to Spanish page source, checkout source, tracking helper, shared HTML
+tracking snippet, routes, downloads implementation, domain configuration, theme,
+font imports, dependencies or lockfile. Original production images are reused.
+No product-name standardization, new guarantee or lifetime-access promise was
+introduced. The earlier name audit recommended The Grand Mahjong Master-Key;
+approval to standardize variants is still pending.
 
-Removed from English landing: flash-sale bar, $37 comparison, “price goes up soon,” limited-time copy, 48-hour transformation claim and $97/$47/$27/Priceless value stack. Price remains $19.95; no countdown added.
+Existing Terms/Privacy placeholders and unverified delivery/access/affiliation
+facts remain owner-review items; this revision does not invent policies or proof.
+The FAQ retains the conservative copy from the prior preview.
 
-## Product facts needing owner confirmation before production
+## Verification
 
-The included-item list comes from the existing offer/checkout: guide, visual cheat sheets and strategic glossary. It adds no bonus, quantity or fulfillment guarantee. Those supplied items still need owner confirmation against the actual Shopify-delivered package; the site source is not proof of fulfillment.
+- Production build passes through `python3 scripts/netlify-build.py`.
+- 166 functional checks passed: four viewport sizes, English/Spanish navigation,
+  FAQ controls, totals, every existing cart selection/exit offer, captured Pixel
+  calls, valid downloads, missing-download 404 and source/hash comparisons.
+- Four production-vs-conservative computed-style comparisons passed; Spanish
+  immediately visible at each viewport.
+- All ten live Shopify carts returned the expected variant ID, quantity 1 and
+  totals: USD 19.95 base, 28.94 one upgrade, 37.93 both, 26.55 exit offers.
+  Cart handoffs redirect to shop.app. No purchases were made.
+- Evidence and screenshots: `/workspace/scratch/v2-conservative/`.
 
-The official NMJL card is not offered or reproduced on the V2 landing. The purchased card and the optional paid strategies upgrade are clearly separate. The FAQ describes the material as a Luxe Tile Press guide and claims no NMJL endorsement. Confirm official-card exclusion and affiliation status before approving production.
+Meta calls were captured without sending test conversion events. Browser font
+resources used TLS-verified requests through the configured proxy. Test-only
+animation disabling stabilizes clicks and screenshots; application styles remain
+unchanged. Local checks do not confirm public branch deployment or final payment.
 
-The original thank-you copy mentions email, but actual Shopify delivery is not visible in the source. The FAQ directs purchasers to order access instructions without inventing an email timing guarantee. The original checkout says “Lifetime Updates”; no hosted-access duration is independently verified, so no new lifetime guarantee is made. The access FAQ refers to keeping downloaded materials and contacting support. Confirm delivery and hosted access terms before production.
+## Preview and production safety
 
-The footer’s existing Terms/Privacy `#` placeholders remain unchanged; actual destinations need to be supplied separately.
+Push only `v2-conversion`. Keep the production branch `migration/netlify-preview`
+and its domain untouched. The existing branch-preview URL should update after
+Netlify builds the new commit, if branch deploys are enabled. Confirm the deploy
+in Netlify and its URL before treating it as ready for public review.
 
-## Preserved Shopify destinations
-
-Eleven source occurrences, ten distinct destinations. All must remain byte-for-byte equal to the production baseline, including protocols, apex/www differences, variant IDs and quantities:
-
-- `http://themodernprotocols.com/cart/48055228498146:1`
-- `http://themodernprotocols.com/cart/48071864156386:1`
-- `http://themodernprotocols.com/cart/48071890075874:1`
-- `https://themodernprotocols.com/cart/48052030767330:1`
-- `https://themodernprotocols.com/cart/48071766409442:1`
-- `https://themodernprotocols.com/cart/48071781908706:1`
-- `https://themodernprotocols.com/cart/48192546603234:1`
-- `https://www.themodernprotocols.com/cart/48023691034850:1`
-- `https://www.themodernprotocols.com/cart/48023695392994:1`
-- `https://www.themodernprotocols.com/cart/48052023558370:1`
-
-## Preview deployment
-
-Production is currently `migration/netlify-preview`; keep that unchanged. No DNS or production-domain changes are needed.
-
-Netlify must enable **Branch deploys** for the individual branch `v2-conversion` in Project configuration → Build & deploy → Continuous deployment → Branches and deploy contexts. Pushes to this branch can then deploy it separately. If enabling after a push does not start a build, trigger a deploy for this branch or push the next review commit. Do not change the production branch or promote the V2 deploy.
-
-The public preview hostname must be confirmed from a successful Netlify branch deploy; a predictable hostname alone is not proof a preview exists. No Netlify API credential or plugin is configured in this session. GitHub API access is blocked, so an automated PR/deploy-preview path could not be created either. Git HTTPS branch pushes remain available.
-
-## Verification evidence
-
-Production build: `python3 scripts/netlify-build.py` (generates valid source ZIPs and runs the existing build). A browser test exercises mobile widths 360 and 390, tablet 768 and desktop 1440; English and Spanish rendering; all three English purchase CTAs; language navigation; nine FAQ interactions; checkout selections and both exit offers; captured PageView/ViewContent/InitiateCheckout calls without sending analytics; no Purchase from this app; valid downloads and missing-download 404; exact source hashes for preserved files.
-
-Results and screenshots are saved outside the checkout under `/workspace/scratch/v2-conversion/`. Captured tracking calls verify application behavior, not delivery to Meta Events Manager. Live Shopify payment screens were not changed or purchased through during these V2 tests. Do not label an incomplete or failed run as passed.
-
-Latest local verification: **170 checks executed, 170 passed** across the four viewport sizes. The production build passed. These results do not establish that a public Netlify branch preview has been created.
+This environment's active network policy currently blocks the standard branch
+preview hostname. The saved draft already includes that domain, but saving does
+not apply it. No Netlify API credential is available. Public deployment status
+must be confirmed separately; do not substitute the production URL for a preview.
